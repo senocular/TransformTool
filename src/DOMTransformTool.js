@@ -16,7 +16,7 @@ DOMTransformTool.prototype.setControls = function(controls){
 		}
 	}
 	
-	this._super.prototype.setControls.call(this, controls);
+	DOMTransformTool.prototype._super.prototype.setControls.call(this, controls);
 };
 
 DOMTransformTool.prototype.shouldDraw = function(){
@@ -25,7 +25,7 @@ DOMTransformTool.prototype.shouldDraw = function(){
 };
 
 function DOMControl(type, u, v, offsetX, offsetY, size){
-	this._super.call(this, type, u, v, offsetX, offsetY, size);
+	DOMControl.prototype._super.call(this, type, u, v, offsetX, offsetY, size);
 	this.id = DOMControl.idPrefix + (++DOMControl.idCounter);
 }
 

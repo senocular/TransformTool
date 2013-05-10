@@ -10,3 +10,5 @@ There are two versions, one using canvas, and the other using SVG to transform D
 **Examples**
 - http://senocular.github.com/TransformTool/examples/TransformCanvasPictures.html
 - http://senocular.github.com/TransformTool/examples/TransformDOMPictures.html
+
+:passport_control: Tested on Chrome 25, Win 7

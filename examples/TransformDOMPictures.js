@@ -216,5 +216,18 @@ function Picture(image, x, y){
 };
 
 Picture.prototype.draw = function(){
-	this.image.style.webkitTransform = this.transform.matrix.toString();
+	var trans = this.transform.matrix.toString();
+	var style = this.image.style;
+	if (typeof style.transform !== undefined){
+		style.transform = trans;
+		
+	}else if (typeof style.webkitTransform !== undefined){
+		style.webkitTransform = trans;
+	}else if (typeof style.msTransform !== undefined){
+		style.msTransform = trans;
+	}else if (typeof style.MozTransform !== undefined){
+		style.MozTransform = trans;
+	}else if (typeof style.OTransform !== undefined){
+		style.OTransform = trans;
+	}
 };

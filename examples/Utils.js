@@ -12,14 +12,12 @@ Mouse.MOVE = Mouse.isTouchSupported ? "touchmove" : "mousemove";
 Mouse.END = Mouse.isTouchSupported ? "touchend" : "mouseup";
 	
 Mouse.get = function(event, elem){
+	if (!elem){
+		elem = event.currentTarget;
+	}
 	
-	var isTouch = false;
-	
-	// touch screen events
 	if (event.touches){
 		if (event.touches.length){
-			isTouch = true;
-			// referencing first touch only
 			Mouse.x = parseInt(event.touches[0].pageX);
 			Mouse.y = parseInt(event.touches[0].pageY);
 		}
@@ -28,27 +26,13 @@ Mouse.get = function(event, elem){
 		Mouse.x = parseInt(event.clientX);
 		Mouse.y = parseInt(event.clientY);
 	}
-	
-	// accounts for border
-	Mouse.x -= elem.clientLeft;
-	Mouse.y -= elem.clientTop;
 
-	// parent offsets
-	var par = elem;
-	while (par !== null) {
-		if (isTouch){
-			// touch events offset scrolling with pageX/Y
-			// so scroll offset not needed for them
-			Mouse.x -= parseInt(par.offsetLeft);
-			Mouse.y -= parseInt(par.offsetTop);
-		}else{
-			Mouse.x += parseInt(par.scrollLeft - par.offsetLeft);
-			Mouse.y += parseInt(par.scrollTop - par.offsetTop);
-		}
-
-		par = par.offsetParent || null;
-	}
+	var rect = elem.getBoundingClientRect();
+	Mouse.x += elem.scrollLeft - elem.clientLeft - rect.left;
+	Mouse.y += elem.scrollTop - elem.clientTop - rect.top;
+	return Mouse;
 }
+
 /**
  * Loads Image objects in bulk and calls a a callback
  * function when all images have loaded.

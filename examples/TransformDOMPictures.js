@@ -213,6 +213,21 @@ function Picture(image, x, y){
 	var w = image.width || image.clientWidth;
 	var h = image.height || image.clientHeight;
 	this.transform = new Transformable(w, h, m, this);
+	
+	var origin = "0 0";
+	var style = image.style;
+	if (typeof style.transformOrigin !== "undefined"){
+		style.transformOrigin = origin;
+		
+	}else if (typeof style.webkitTransformOrigin !== "undefined"){
+		style.webkitTransformOrigin = origin;
+	}else if (typeof style.msTransformOrigin !== "undefined"){
+		style.msTransformOrigin = origin;
+	}else if (typeof style.MozTransformOrigin !== "undefined"){
+		style.MozTransformOrigin = origin;
+	}else if (typeof style.OTransformOrigin !== "undefined"){
+		style.OTransformOrigin = origin;
+	}
 };
 
 Picture.prototype.draw = function(){

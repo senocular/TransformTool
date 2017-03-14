@@ -6,10 +6,9 @@ var Mouse = {};
 Mouse.x = 0;
 Mouse.y = 0;
 
-Mouse.isTouchSupported = "ontouchstart" in window;
-Mouse.START = Mouse.isTouchSupported ? "touchstart" : "mousedown";
-Mouse.MOVE = Mouse.isTouchSupported ? "touchmove" : "mousemove";
-Mouse.END = Mouse.isTouchSupported ? "touchend" : "mouseup";
+Mouse.START = "mousedown";
+Mouse.MOVE = "mousemove";
+Mouse.END = "mouseup";
 	
 Mouse.get = function(event, elem){
 	if (!elem){
